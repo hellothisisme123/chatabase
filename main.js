@@ -233,7 +233,7 @@ function loadapp() {
   function setHeader() {
     const me = sessionStorage.getItem('username')
     const them = sessionStorage.getItem('activeConvo')
-    const headerUsername = document.querySelector('.header > .username')
+    const headerUsername = document.querySelector('.header .username')
     const headerProfilePic = document.querySelector('.header .profilePic')
     const currentConvo = document.querySelector('.currentConvo')
     const theirProfilePic = document.querySelector('.theirProfilePic')
