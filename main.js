@@ -169,7 +169,10 @@ function loadapp() {
 
   function createNewConvo() {
     // allows you to send messages to a foreign user
-    const sendnewconversationmessage = document.querySelector('.createNewConversation button')
+    const sendnewconversationmessage = document.querySelector('.createNewConversation button.send')
+    const closenewconversation = document.querySelector('.createNewConversation button.close')
+    const createNewConversation = document.querySelector('.createNewConversation')
+
     sendnewconversationmessage.addEventListener('click', e => {
       const username = document.querySelector('.createNewConversation .username').value
       const message = document.querySelector('.createNewConversation .message').value
@@ -189,6 +192,10 @@ function loadapp() {
       insertSupabaseRow()
 
       const createNewConversation = document.querySelector('.createNewConversation')
+      createNewConversation.classList.add('active')
+    })
+
+    closenewconversation.addEventListener('click', e => {
       createNewConversation.classList.add('active')
     })
   }
