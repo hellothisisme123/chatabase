@@ -214,7 +214,19 @@ function loadapp() {
     .from('messages')
     .select('')
 
-    
+    let convos = repullMessages 
+    let Atime = convos[0].time
+    Atime = Atime.split('-')
+    Atime[2] = Atime[2].split('T')
+    Atime[2][1] = Atime[2][1].split(':')
+    Atime = {
+      year: parseInt(Atime[0]),
+      month: parseInt(Atime[1]),
+      day: parseInt(Atime[2][0]),
+      hour: parseInt(Atime[2][1][0]),
+      minute: parseInt(Atime[2][1][1]),
+      second: parseFloat(Atime[2][1][2])
+    }
     
     // let convos = repullMessages.sort((a, b) => {
     
@@ -311,16 +323,7 @@ function loadapp() {
       
       
     // })
-
-    if (convos == repullMessages) {
-      console.log('theyre the same');
-    } else {
-      console.log('theyre different')
-    }
-    
-    
-
-    
+ 
 
     // filters out messages that dont pertain to the current conversation
     convos = convos.map(msg => {
