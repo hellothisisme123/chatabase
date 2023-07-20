@@ -112,7 +112,7 @@ input {
   grid-template-columns: var(--sidebarWidth) 1fr;
   grid-template-rows: 100px 1fr 100px;
   width: 100%;
-  height: 100vmin;
+  height: 100svh;
   background-color: var(--pink-2);
 }
 
