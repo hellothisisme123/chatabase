@@ -208,13 +208,122 @@ function loadapp() {
     let messages = [...document.querySelectorAll('.conversation > *')]
     messages.forEach(child => child.remove())
     
+    // console.log('repullMessages:', repullMessages);
     // pulls all messages
     let { data: repullMessages, error } = await supabase
     .from('messages')
     .select('')
 
+    
+    
+    // let convos = repullMessages.sort((a, b) => {
+    
+    //   let Atime = a.time
+    //   Atime = Atime.split('-')
+    //   Atime[2] = Atime[2].split('T')
+    //   Atime[2][1] = Atime[2][1].split(':')
+    //   a.time = {
+    //     year: parseInt(Atime[0]),
+    //     month: parseInt(Atime[1]),
+    //     day: parseInt(Atime[2][0]),
+    //     hour: parseInt(Atime[2][1][0]),
+    //     minute: parseInt(Atime[2][1][1]),
+    //     second: parseFloat(Atime[2][1][2])
+    //   }
+
+    //   let Btime = b.time
+    //   Btime = Btime.split('-')
+    //   Btime[2] = Btime[2].split('T')
+    //   Btime[2][1] = Btime[2][1].split(':')
+    //   a.time = {
+    //     year: parseInt(Btime[0]),
+    //     month: parseInt(Btime[1]),
+    //     day: parseInt(Btime[2][0]),
+    //     hour: parseInt(Btime[2][1][0]),
+    //     minute: parseInt(Btime[2][1][1]),
+    //     second: parseFloat(Btime[2][1][2])
+    //   }
+
+    //   console.log(a, b);
+
+    //   // if ()
+
+    //   // if (Atime.second > Btime.second) {
+    //   //   console.log('different second')
+    //   //   return a - b
+    //   // } else if (Atime.second < Btime.second) {
+    //   //   console.log('different second')
+    //   //   return b - a
+    //   // } else if (Atime.second == Btime.second) {
+    //   //   console.log('same second')
+    //   // }
+    //   // year
+      
+
+      
+    //   if (Atime.year > Btime.year) {
+    //     return -1
+    //   } else if (Atime.year < Btime.year) {
+    //     return 1
+    //   } else if (Atime.year == Btime.year) {
+    //     // month
+    //     if (Atime.month > Btime.month) {
+    //       return -1
+    //     } else if (Atime.month < Btime.month) {
+    //       return 1
+    //     } else if (Atime.month == Btime.month) {
+    //       // day
+    //       if (Atime.day > Btime.day) {
+    //         return -1
+    //       } else if (Atime.day < Btime.day) {
+    //         return 1
+    //       } else if (Atime.day == Btime.day) {
+    //         // hour
+    //         if (Atime.hour > Btime.hour) {
+    //           return -1
+    //         } else if (Atime.hour < Btime.hour) {
+    //           return 1
+    //         } else if (Atime.hour == Btime.hour) {
+    //           // minute
+    //           if (Atime.minute > Btime.minute) {
+    //             // console.log("a wins on minutes");
+    //             return -1
+    //           } else if (Atime.minute < Btime.minute) {
+    //             // console.log("b wins on minutes");
+    //             return 1
+    //           } else if (Atime.minute == Btime.minute) {
+    //             // second
+    //             if (Atime.second > Btime.second) {
+    //               // console.log("a wins on seconds");
+    //               return -1 
+    //             } else if (Atime.second < Btime.second) {
+    //               // console.log("b wins on seconds");
+    //               return 1
+    //             } else if (Atime.second == Btime.second) {
+    //               // console.log('wowza you 2 sent the message at the exact same second with 6 decimal points of accuracy')
+    //               return 0
+    //             }
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+      
+      
+    // })
+
+    if (convos == repullMessages) {
+      console.log('theyre the same');
+    } else {
+      console.log('theyre different')
+    }
+    
+    
+
+    
+
     // filters out messages that dont pertain to the current conversation
-    let convos = repullMessages.map(msg => {
+    convos = convos.map(msg => {
       if (msg.from == myUsername && msg.to == activeConvo || msg.to == myUsername && msg.from == activeConvo) return msg
     }).filter(x => {if (x) return x})    
 
